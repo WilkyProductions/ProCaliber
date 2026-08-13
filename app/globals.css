@@ -56,6 +56,12 @@ h4 {
   text-shadow: 0 0 24px var(--color-accent-glow);
 }
 
+/* Same glow as .text-glow, for images (e.g. the header logo) */
+.logo-glow {
+  filter: drop-shadow(0 0 8px var(--color-accent-glow))
+    drop-shadow(0 0 24px var(--color-accent-glow));
+}
+
 /* Traveling current pulse along circuit-line paths, see ElectricBackground */
 @keyframes wire-flow {
   from {
