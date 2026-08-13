@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
-/* Core palette — tune these to match final logo art once dropped into
-   /public/images/logo. --color-gray is meant to match the gray used in
-   the Pro Caliber logo; update it once you have the exact hex. */
+/* Core palette. --color-gray is the same neutral gray as the Pro Caliber
+   logo wordmark (#4d4d4d), lightened for legibility against this near-black
+   background — the raw logo value has ~1.7:1 contrast here (illegible);
+   this keeps the same neutral (no blue/warm tint) undertone at a contrast
+   ratio that's actually readable. */
 @theme {
   --color-base: #05070b;
   --color-surface: #0a0e16;
@@ -10,8 +12,8 @@
   --color-border: rgba(255, 255, 255, 0.08);
 
   --color-white: #f5f7fa;
-  --color-gray: #98a2b3;
-  --color-gray-dim: #6b7280;
+  --color-gray: #9c9c9c;
+  --color-gray-dim: #6b6b6b;
 
   --color-accent: #2f8fff;
   --color-accent-bright: #7ecbff;

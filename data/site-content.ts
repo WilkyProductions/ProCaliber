@@ -4,9 +4,9 @@
 export const company = {
   name: "Pro Caliber Services",
   tagline: "Industrial Electrical Systems & Control Panel Fabrication",
-  phone: "(000) 000-0000", // TODO: replace with real number
-  email: "info@procaliberservices.com", // TODO: replace with real inbox
-  address: "City, State", // TODO: replace with real service area / address
+  phone: "Add phone number", // TODO: replace with real number
+  email: "Add email address", // TODO: replace with real inbox
+  address: "Add service area", // TODO: replace with real service area / address
 };
 
 export const nav = [
