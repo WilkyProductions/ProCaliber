@@ -19,7 +19,6 @@
   --color-accent-bright: #7ecbff;
   --color-accent-dim: rgba(60, 140, 255, 0.14);
   --color-accent-glow: rgba(110, 190, 255, 0.85);
-  --color-logo-glow: rgba(255, 255, 255, 0.55);
 
   --font-display: var(--font-heading);
   --font-body: var(--font-inter);
@@ -65,13 +64,6 @@ h4 {
   }
 }
 
-/* Subtle, tight glow for images (e.g. the header logo) — darker and much
-   less spread than .text-glow so the gray wordmark stays readable over it */
-.logo-glow {
-  filter: drop-shadow(0 0 1px var(--color-logo-glow))
-    drop-shadow(0 0 3px var(--color-logo-glow));
-}
-
 /* Traveling current pulse along circuit-line paths, see ElectricBackground */
 @keyframes wire-flow {
   from {
@@ -86,6 +78,21 @@ h4 {
   animation-name: wire-flow;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+/* A CSS filter here (vs. an SVG <feGaussianBlur> filter primitive) lets
+   the browser composite the blur on the GPU instead of software-
+   rasterizing it every frame — the SVG-filter version was the main cause
+   of mobile stutter/flashing during scroll. */
+.wire-pulse-glow {
+  filter: blur(4px);
+  will-change: filter;
+}
+
+@media (max-width: 640px) {
+  .wire-pulse-glow {
+    filter: blur(2.5px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

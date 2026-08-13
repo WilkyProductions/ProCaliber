@@ -85,20 +85,17 @@ export default function ElectricBackground() {
         preserveAspectRatio="none"
         className="block"
       >
-        <defs>
-          <filter id="wire-glow" x="-75%" y="-75%" width="250%" height="250%">
-            <feGaussianBlur stdDeviation="5" result="blur" />
-            <feMerge>
-              <feMergeNode in="blur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {WIRES.map((wire) => {
+        {WIRES.map((wire, i) => {
           const { d, nodes } = buildPath(wire.stops, height);
           return (
-            <g key={wire.id}>
+            <g
+              key={wire.id}
+              // Every other wire is skipped below the sm breakpoint —
+              // mobile GPUs choke on this many simultaneously-animating
+              // blurred paths over a page-height canvas, which reads as
+              // the whole background stuttering/flashing during scroll.
+              className={i % 2 === 1 ? "hidden sm:block" : undefined}
+            >
               <path
                 d={d}
                 stroke="var(--color-accent-dim)"
@@ -106,22 +103,41 @@ export default function ElectricBackground() {
                 fill="none"
                 vectorEffect="non-scaling-stroke"
               />
-              {nodes.map(([nx, ny], i) => (
+              {nodes.map(([nx, ny], j) => (
                 <circle
-                  key={i}
+                  key={j}
                   cx={nx}
                   cy={ny}
                   r={3}
                   fill="var(--color-accent-dim)"
                 />
               ))}
+              {/* Soft halo (blurred, wider) and sharp core (crisp, thin)
+                  layered together fake the old feGaussianBlur+feMerge
+                  look, but with a plain CSS blur — much cheaper to
+                  composite than an SVG filter primitive on mobile. Both
+                  share the same dash/timing so they move as one pulse. */}
+              <path
+                d={d}
+                stroke="var(--color-accent-bright)"
+                strokeWidth={wire.strokeWidth + 3}
+                fill="none"
+                vectorEffect="non-scaling-stroke"
+                pathLength={100}
+                strokeDasharray="14 500"
+                strokeLinecap="round"
+                className="wire-pulse wire-pulse-glow"
+                style={{
+                  animationDuration: `${wire.duration}s`,
+                  animationDelay: `${wire.delay}s`,
+                }}
+              />
               <path
                 d={d}
                 stroke="var(--color-accent-bright)"
                 strokeWidth={wire.strokeWidth + 0.4}
                 fill="none"
                 vectorEffect="non-scaling-stroke"
-                filter="url(#wire-glow)"
                 pathLength={100}
                 strokeDasharray="14 500"
                 strokeLinecap="round"
