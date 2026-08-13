@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* Core palette — tune these to match final logo art once dropped into
+   /public/images/logo. --color-gray is meant to match the gray used in
+   the Pro Caliber logo; update it once you have the exact hex. */
+@theme {
+  --color-base: #05070b;
+  --color-surface: #0a0e16;
+  --color-surface-2: #0f141e;
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  --color-white: #f5f7fa;
+  --color-gray: #98a2b3;
+  --color-gray-dim: #6b7280;
+
+  --color-accent: #2f8fff;
+  --color-accent-bright: #7ecbff;
+  --color-accent-dim: rgba(60, 140, 255, 0.14);
+  --color-accent-glow: rgba(110, 190, 255, 0.85);
+
+  --font-display: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-base);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Utility: faint animated glow used behind headings / cards */
+.text-glow {
+  text-shadow: 0 0 24px var(--color-accent-glow);
+}
+
+/* Traveling current pulse along circuit-line paths, see ElectricBackground */
+@keyframes wire-flow {
+  from {
+    stroke-dashoffset: 20;
+  }
+  to {
+    stroke-dashoffset: -120;
+  }
+}
+
+.wire-pulse {
+  animation-name: wire-flow;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wire-pulse {
+    animation: none;
+    stroke-dasharray: none;
+    opacity: 0.5;
+  }
+}
