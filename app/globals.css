@@ -19,6 +19,7 @@
   --color-accent-bright: #7ecbff;
   --color-accent-dim: rgba(60, 140, 255, 0.14);
   --color-accent-glow: rgba(110, 190, 255, 0.85);
+  --color-logo-glow: rgba(47, 143, 255, 0.45);
 
   --font-display: var(--font-heading);
   --font-body: var(--font-inter);
@@ -56,10 +57,11 @@ h4 {
   text-shadow: 0 0 24px var(--color-accent-glow);
 }
 
-/* Same glow as .text-glow, for images (e.g. the header logo) */
+/* Subtle, tight glow for images (e.g. the header logo) — darker and much
+   less spread than .text-glow so the gray wordmark stays readable over it */
 .logo-glow {
-  filter: drop-shadow(0 0 8px var(--color-accent-glow))
-    drop-shadow(0 0 24px var(--color-accent-glow));
+  filter: drop-shadow(0 0 1px var(--color-logo-glow))
+    drop-shadow(0 0 3px var(--color-logo-glow));
 }
 
 /* Traveling current pulse along circuit-line paths, see ElectricBackground */
