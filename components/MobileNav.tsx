@@ -9,7 +9,7 @@ export default function MobileNav({ items }: { items: NavItem[] }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="md:hidden">
+    <div className="absolute top-1/2 right-0 -translate-y-1/2 md:hidden">
       <button
         type="button"
         aria-label="Open menu"

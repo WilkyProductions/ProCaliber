@@ -16,20 +16,38 @@ type WireConfig = {
 // horizontally to fill the viewport so positions stay proportional at any
 // screen width. y is a fraction of total page height (1 = bottom, 0 = top),
 // so lines always span the full page regardless of content length.
+//
+// Wires are grouped into loose x-position pairs (bundles) with dense
+// right-angle jogs — some double back out and return to the same x, like
+// conduit runs branching off to a junction box and rejoining — to read as
+// an assembly of raceways rather than isolated single lines.
 const WIRES: WireConfig[] = [
-  { id: "w1", duration: 4.2, delay: -1.1, strokeWidth: 1.6, stops: [[64, 1], [64, 0]] },
-  { id: "w2", duration: 5.6, delay: -3.4, strokeWidth: 1.6, stops: [[168, 1], [168, 0.72], [212, 0.72], [212, 0.44], [176, 0.44], [176, 0]] },
-  { id: "w3", duration: 3.6, delay: -0.4, strokeWidth: 1.4, stops: [[292, 1], [292, 0.3], [292, 0]] },
-  { id: "w4", duration: 6.1, delay: -2.6, strokeWidth: 1.6, stops: [[398, 1], [398, 0.58], [352, 0.58], [352, 0]] },
-  { id: "w5", duration: 4.8, delay: -4.1, strokeWidth: 1.4, stops: [[512, 1], [512, 0]] },
-  { id: "w6", duration: 5.2, delay: -1.8, strokeWidth: 1.6, stops: [[624, 1], [624, 0.8], [668, 0.8], [668, 0.5], [612, 0.5], [612, 0.2], [656, 0.2], [656, 0]] },
-  { id: "w7", duration: 3.9, delay: -2.9, strokeWidth: 1.4, stops: [[748, 1], [748, 0.46], [792, 0.46], [792, 0]] },
-  { id: "w8", duration: 5.9, delay: -0.9, strokeWidth: 1.6, stops: [[860, 1], [860, 0]] },
-  { id: "w9", duration: 4.5, delay: -3.9, strokeWidth: 1.4, stops: [[974, 1], [974, 0.64], [934, 0.64], [934, 0.28], [986, 0.28], [986, 0]] },
-  { id: "w10", duration: 6.4, delay: -1.4, strokeWidth: 1.6, stops: [[1096, 1], [1096, 0.36], [1096, 0]] },
-  { id: "w11", duration: 4.0, delay: -4.6, strokeWidth: 1.4, stops: [[1208, 1], [1208, 0.7], [1252, 0.7], [1252, 0]] },
-  { id: "w12", duration: 5.4, delay: -2.2, strokeWidth: 1.6, stops: [[1320, 1], [1320, 0.5], [1364, 0.5], [1364, 0]] },
-  { id: "w13", duration: 3.7, delay: -3.1, strokeWidth: 1.4, stops: [[1400, 1], [1400, 0]] },
+  // Bundle A
+  { id: "w1", duration: 6.4, delay: -1.6, strokeWidth: 1.6, stops: [[56, 1], [56, 0.82], [56, 0.82], [92, 0.82], [92, 0.6], [56, 0.6], [56, 0.34], [56, 0.34], [56, 0]] },
+  { id: "w2", duration: 5.2, delay: -4.9, strokeWidth: 1.4, stops: [[100, 1], [100, 0.58], [128, 0.58], [128, 0.3], [100, 0.3], [100, 0]] },
+
+  // Bundle B
+  { id: "w3", duration: 7.6, delay: -0.6, strokeWidth: 1.6, stops: [[236, 1], [236, 0.85], [268, 0.85], [268, 0.66], [236, 0.66], [236, 0.44], [210, 0.44], [210, 0.2], [236, 0.2], [236, 0]] },
+  { id: "w4", duration: 5.8, delay: -3.4, strokeWidth: 1.4, stops: [[276, 1], [276, 0.7], [276, 0.7], [304, 0.7], [304, 0.36], [276, 0.36], [276, 0]] },
+
+  // Bundle C
+  { id: "w5", duration: 6.8, delay: -2.2, strokeWidth: 1.6, stops: [[440, 1], [440, 0.8], [468, 0.8], [468, 0.54], [440, 0.54], [440, 0.3], [466, 0.3], [466, 0.08], [440, 0.08], [440, 0]] },
+  { id: "w6", duration: 5.4, delay: -5.6, strokeWidth: 1.4, stops: [[480, 1], [480, 0.48], [504, 0.48], [504, 0.2], [480, 0.2], [480, 0]] },
+
+  // Bundle D
+  { id: "w7", duration: 7.0, delay: -1.1, strokeWidth: 1.6, stops: [[664, 1], [664, 0.62], [698, 0.62], [698, 0.34], [664, 0.34], [664, 0]] },
+  { id: "w8", duration: 8.2, delay: -3.9, strokeWidth: 1.4, stops: [[706, 1], [706, 0.88], [736, 0.88], [736, 0.64], [706, 0.64], [706, 0.4], [732, 0.4], [732, 0.14], [706, 0.14], [706, 0]] },
+
+  // Bundle E
+  { id: "w9", duration: 6.1, delay: -4.3, strokeWidth: 1.6, stops: [[984, 1], [984, 0.7], [1014, 0.7], [1014, 0.42], [984, 0.42], [984, 0]] },
+  { id: "w10", duration: 7.4, delay: -0.9, strokeWidth: 1.4, stops: [[1024, 1], [1024, 0.82], [1054, 0.82], [1054, 0.58], [1024, 0.58], [1024, 0.34], [1050, 0.34], [1050, 0.12], [1024, 0.12], [1024, 0]] },
+
+  // Bundle F
+  { id: "w11", duration: 5.6, delay: -2.9, strokeWidth: 1.6, stops: [[1244, 1], [1244, 0.58], [1272, 0.58], [1272, 0.3], [1244, 0.3], [1244, 0]] },
+  { id: "w12", duration: 6.6, delay: -5.1, strokeWidth: 1.4, stops: [[1284, 1], [1284, 0.76], [1284, 0.76], [1308, 0.76], [1308, 0.44], [1284, 0.44], [1284, 0.2], [1308, 0.2], [1308, 0]] },
+
+  // Edge run
+  { id: "w13", duration: 6.0, delay: -1.9, strokeWidth: 1.4, stops: [[1404, 1], [1404, 0.5], [1424, 0.5], [1424, 0.2], [1404, 0.2], [1404, 0]] },
 ];
 
 function buildPath(stops: Stop[], height: number): { d: string; nodes: [number, number][] } {
@@ -87,13 +105,22 @@ export default function ElectricBackground() {
       >
         {WIRES.map((wire, i) => {
           const { d, nodes } = buildPath(wire.stops, height);
+          // Two trailing "echo" copies of the same dash, delayed by a
+          // fixed fraction of the loop, fake a smooth comet-tail fade
+          // behind the bright tip. Because the lag is a phase offset (not
+          // tied to position on the path), the tip-to-tail brightness
+          // profile stays identical the entire way up — it never resets
+          // at a turn, only loops once per full bottom-to-top pass.
+          const echo1Delay = wire.delay + wire.duration * 0.05;
+          const echo2Delay = wire.delay + wire.duration * 0.11;
+
           return (
             <g
               key={wire.id}
               // Every other wire is skipped below the sm breakpoint —
-              // mobile GPUs choke on this many simultaneously-animating
-              // blurred paths over a page-height canvas, which reads as
-              // the whole background stuttering/flashing during scroll.
+              // mobile GPUs choke on too many simultaneously-animating
+              // paths over a page-height canvas, which reads as the whole
+              // background stuttering during scroll.
               className={i % 2 === 1 ? "hidden sm:block" : undefined}
             >
               <path
@@ -112,11 +139,8 @@ export default function ElectricBackground() {
                   fill="var(--color-accent-dim)"
                 />
               ))}
-              {/* Soft halo (blurred, wider) and sharp core (crisp, thin)
-                  layered together fake the old feGaussianBlur+feMerge
-                  look, but with a plain CSS blur — much cheaper to
-                  composite than an SVG filter primitive on mobile. Both
-                  share the same dash/timing so they move as one pulse. */}
+
+              {/* Soft blurred halo behind the tip */}
               <path
                 d={d}
                 stroke="var(--color-accent-bright)"
@@ -124,7 +148,7 @@ export default function ElectricBackground() {
                 fill="none"
                 vectorEffect="non-scaling-stroke"
                 pathLength={100}
-                strokeDasharray="14 500"
+                strokeDasharray="10 500"
                 strokeLinecap="round"
                 className="wire-pulse wire-pulse-glow"
                 style={{
@@ -132,6 +156,42 @@ export default function ElectricBackground() {
                   animationDelay: `${wire.delay}s`,
                 }}
               />
+
+              {/* Trailing echoes, dimmest first so the brighter one paints on top */}
+              <path
+                d={d}
+                stroke="var(--color-accent-bright)"
+                strokeWidth={wire.strokeWidth}
+                fill="none"
+                vectorEffect="non-scaling-stroke"
+                pathLength={100}
+                strokeDasharray="6 500"
+                strokeLinecap="round"
+                className="wire-pulse"
+                opacity={0.15}
+                style={{
+                  animationDuration: `${wire.duration}s`,
+                  animationDelay: `${echo2Delay}s`,
+                }}
+              />
+              <path
+                d={d}
+                stroke="var(--color-accent-bright)"
+                strokeWidth={wire.strokeWidth}
+                fill="none"
+                vectorEffect="non-scaling-stroke"
+                pathLength={100}
+                strokeDasharray="6 500"
+                strokeLinecap="round"
+                className="wire-pulse"
+                opacity={0.4}
+                style={{
+                  animationDuration: `${wire.duration}s`,
+                  animationDelay: `${echo1Delay}s`,
+                }}
+              />
+
+              {/* Bright tip */}
               <path
                 d={d}
                 stroke="var(--color-accent-bright)"
@@ -139,7 +199,7 @@ export default function ElectricBackground() {
                 fill="none"
                 vectorEffect="non-scaling-stroke"
                 pathLength={100}
-                strokeDasharray="14 500"
+                strokeDasharray="6 500"
                 strokeLinecap="round"
                 className="wire-pulse"
                 style={{

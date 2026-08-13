@@ -7,8 +7,8 @@ export default function Header() {
   const logoSrc = getFirstImage("logo");
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border bg-base/80 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8">
+    <header className="sticky top-0 z-30 bg-base/80 backdrop-blur-md">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-center px-6 py-4 sm:px-8 md:justify-between">
         <a href="#top" className="flex items-center gap-3">
           {logoSrc ? (
             <Image
@@ -17,7 +17,7 @@ export default function Header() {
               width={220}
               height={64}
               priority
-              className="h-14 w-auto sm:h-16"
+              className="h-16 w-auto brightness-0 invert sm:h-20"
             />
           ) : (
             <span className="font-display text-lg font-semibold tracking-wide text-white sm:text-xl">
@@ -46,6 +46,14 @@ export default function Header() {
 
         <MobileNav items={nav} />
       </div>
+
+      <div
+        className="h-px w-full"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, var(--color-accent-bright), transparent)",
+        }}
+      />
     </header>
   );
 }

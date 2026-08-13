@@ -6,7 +6,7 @@ export default function Hero() {
   const heroImage = getFirstImage("hero");
 
   return (
-    <section id="top" className="relative flex min-h-[92vh] min-h-[92svh] items-center overflow-hidden pt-24">
+    <section id="top" className="relative flex min-h-[92vh] min-h-[92svh] items-center overflow-hidden pt-12 sm:pt-16 md:pt-24">
       {heroImage && (
         <div className="absolute inset-0">
           <Image
