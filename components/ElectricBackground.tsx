@@ -43,14 +43,32 @@ export default function ElectricBackground() {
   const [height, setHeight] = useState<number | null>(null);
 
   useEffect(() => {
-    const measure = () => setHeight(document.documentElement.scrollHeight);
-    measure();
+    let raf = 0;
+    let debounce: ReturnType<typeof setTimeout>;
+
+    // Mobile browsers fire resize/layout events while their address bar
+    // shows/hides during scroll. Debouncing and ignoring sub-threshold
+    // changes keeps that from re-triggering every wire's path geometry
+    // mid-scroll, which otherwise reads as the background "flashing."
+    const measure = () => {
+      clearTimeout(debounce);
+      debounce = setTimeout(() => {
+        raf = requestAnimationFrame(() => {
+          const next = document.documentElement.scrollHeight;
+          setHeight((prev) => (prev !== null && Math.abs(prev - next) < 40 ? prev : next));
+        });
+      }, 150);
+    };
+
+    setHeight(document.documentElement.scrollHeight);
 
     const ro = new ResizeObserver(measure);
     ro.observe(document.documentElement);
     window.addEventListener("resize", measure);
 
     return () => {
+      clearTimeout(debounce);
+      cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener("resize", measure);
     };

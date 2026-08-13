@@ -19,7 +19,7 @@
   --color-accent-bright: #7ecbff;
   --color-accent-dim: rgba(60, 140, 255, 0.14);
   --color-accent-glow: rgba(110, 190, 255, 0.85);
-  --color-logo-glow: rgba(47, 143, 255, 0.45);
+  --color-logo-glow: rgba(255, 255, 255, 0.55);
 
   --font-display: var(--font-heading);
   --font-body: var(--font-inter);
@@ -55,6 +55,14 @@ h4 {
 /* Utility: faint animated glow used behind headings / cards */
 .text-glow {
   text-shadow: 0 0 24px var(--color-accent-glow);
+}
+
+/* Smaller screens sit much closer to the glass than desktop, so the same
+   blur radius reads as an overpowering blown-out halo — tighten it up. */
+@media (max-width: 640px) {
+  .text-glow {
+    text-shadow: 0 0 8px var(--color-accent-glow);
+  }
 }
 
 /* Subtle, tight glow for images (e.g. the header logo) — darker and much
