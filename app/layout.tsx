@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import ElectricBackground from "@/components/ElectricBackground";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+const headingFont = localFont({
+  src: "./fonts/Race Sport.ttf",
+  variable: "--font-heading",
+  display: "swap",
 });
 
 const inter = Inter({
@@ -25,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${inter.variable} h-full`}
+      className={`${headingFont.variable} ${inter.variable} h-full`}
     >
       <body className="relative min-h-full bg-base text-white antialiased overflow-x-hidden">
         <ElectricBackground />

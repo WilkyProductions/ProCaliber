@@ -20,7 +20,7 @@
   --color-accent-dim: rgba(60, 140, 255, 0.14);
   --color-accent-glow: rgba(110, 190, 255, 0.85);
 
-  --font-display: var(--font-space-grotesk);
+  --font-display: var(--font-heading);
   --font-body: var(--font-inter);
 }
 
